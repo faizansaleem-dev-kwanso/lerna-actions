@@ -403,7 +403,7 @@ const AssignmentChapters: FC = (): JSX.Element => {
                     onClick={refreshAssignmentChapters}
                     data-cy="notebooksSyncButton"
                   >
-                    <img src={SyncIcon} alt="sync icon" /> <span className="btnName"> Sync </span>
+                    <img src={SyncIcon} alt="sync icon" /> <span className="btnName"> Syn </span>
                   </Button>
                 </Grid>
               </Box>

@@ -23,6 +23,7 @@ jobs:
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
+        run: cd ../../package/lms
         uses: cypress-io/github-action@v2
         with:
           browser: chrome

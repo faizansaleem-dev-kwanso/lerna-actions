@@ -1,0 +1,51 @@
+# on:
+#   push:
+#     branches:
+#       - main
+#     # paths:
+#     #   - "packages/common/**"
+# defaults:
+#   run:
+#     working-directory: "packages/common"
+
+# jobs:
+#   publish:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v1
+#       - uses: actions/setup-node@v1
+#         with:
+#           node-version: 14
+#       - run: npm install
+#       # - run: npm test
+#       - uses: JS-DevTools/npm-publish@v1
+#         with:
+#           token: ${{ secrets.NPM_AUTH_TOKEN }}
+#           access: "public"
+
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/common/**"
+defaults:
+  run:
+    working-directory: "packages/common"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - run: npm install
+      - run: npm version patch
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
